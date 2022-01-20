@@ -1,15 +1,31 @@
 version: "3"
 services: 
   webapp-core:
-    image: webapp
-    environment:
-      - FLASK_APP=???
-      - FLASK_ENV=???
+    build: .
+    image: wa-core:v0.1
     ports:
-      - ??:??
+      - XXXX:5000 # ustaw 80 na produkcji (ma działać na domenie http://prod2.fenu-experiment.pl/ )
+    environment:
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_RUN_PORT=5000
+      - FLASK_ENV=development
+    volumes:
+      - /tmp/WebApplication/database:/WebApp-Core/database
+    #networks:
+    #
+  sqlitebrowse:
+    image: coleifer/sqlite-web
+    ports:
+      - XXXX:8080 # ustaw 8080 na produkcji (ma działać na domenie http://prod2db.fenu-experiment.pl/ )
+    volumes:
+      - /tmp/WebApplication/database:/data
+    environment:
+      - SQLITE_DATABASE=sqlite
+    #networks:
 
-volumes:
-  ??
+#volumes:
+#  appdb:
 
-networks:
-  ??
+#networks:
+#  ???:
+#    driver: bridge
