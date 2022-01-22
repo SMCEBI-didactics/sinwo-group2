@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% block body %}
+
+Dodawanie 
+
+<b>STATUS</b> = {{ status }}
+
+<form  method="POST">
+	<input type="username" name="liczba1" placeholder="Liczba 1">
+	<input type="username" name="liczba2" placeholder="Liczba 2">
+<input type="submit" value="Dodaj">
+</form>
+
+
+<b>stare wyniki:</b> <hr>
+
+{% for wyniki in stare_wyniki %}
+czas: {{ wyniki.timestamp.strftime("%H:%M %d-%m-%Y") }} wykonane działanie: {{ wyniki }} <hr>
+{% endfor %}
+
+<hr>
+
+
+{% endblock %}
+
