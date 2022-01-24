@@ -7,24 +7,27 @@ from Dodaj.main import dodaj
 """
 """
 
+
 @app.route("/")
 def home_route():
     """
     Strona główna
     """
-    return render_template("home.html")
+    wybory = ['liczby pierwsze', 'calkowanie', 'liczby losowe', 'dekodery', 'statystyka', 'miejsca zerowe']
+    opcje = []
+    for el in wybory:
+        file_name = "_".join(el.split(" "))
+        opcje.append({'name': el, 'filename': file_name})
+    return render_template("home.html", opcje=opcje)
 
 
-
-
-
-
-
-
-
-
-
-
+@app.route("/method/<var>", methods=["GET", "POST"])
+def method_route(var):
+    """
+    przykład adres:port/api/cos
+    """
+    site = var + '.html'
+    return render_template(site, var=var)
 
 #######################
 #######################

@@ -3,8 +3,14 @@
 
 
 
-To jest home.html
-
+<div class='home-div'>
+  <h2 class='home-header'>Wybierz dzialanie:</h2>
+  <p class='home-options'>
+    {% for opcja in opcje %}
+    <a href="{{ url_for('method_route', var=opcja.filename) }}">{{ opcja.name }}</a><br/>
+    {% endfor %}
+  </p>
+</div>
 
 
 
