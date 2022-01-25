@@ -36,3 +36,11 @@ class Dekodery(db.Model):
     def __repr__(self):
         return f"{self.operacja}, Wejscie: {self.tekst}, Wyjscie: {self.wynik}"
 
+class Liczby_pseudolosowe(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    bottom = db.Column(db.Text)
+    top = db.Column(db.Text)
+    randomNumber = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    def __repr__(self):
+        return f'Dolna granica: {self.bottom} Gorna granica: {self.top} :losowa liczba to: {self.randomNumber}, '
