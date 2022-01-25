@@ -19,9 +19,9 @@ user@host:~$ source flask_venv/bin/activate
 ```console
 
 (flask_venv) user@host:~$ mkdir database
-(flask_venv) user@host:~$ flask db init
-(flask_venv) user@host:~$ flask db migrate # po modyfikacji models.py wystarczy wykonać tylko 2 ostatnie polecenia 
-(flask_venv) user@host:~$ flask db upgrade
+(flask_venv) user@host:~$ flask db init -d database
+(flask_venv) user@host:~$ flask db migrate -d database # po modyfikacji models.py wystarczy wykonać tylko 2 ostatnie polecenia 
+(flask_venv) user@host:~$ flask db upgrade -d database
 
 ```
 
