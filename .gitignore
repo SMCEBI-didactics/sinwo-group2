@@ -5,4 +5,4 @@
 .idea
 %SystemDrive%
 database
-
+*.DS_Store
