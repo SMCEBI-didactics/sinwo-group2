@@ -3,9 +3,8 @@ from WebApp.models import *
 from flask import render_template, request
 
 from Dodaj.main import dodaj
-
-"""
-"""
+import Dekoder.main as dk
+import chuj as ch
 
 
 @app.route("/")
@@ -79,6 +78,29 @@ def przyklad():
     #################################################
 
     return render_template("dodawanie.html", status=status, stare_wyniki=stare_wyniki)
+
+
+@app.route("/method/dekodery", methods=["GET", "POST"])
+def dekoder():
+    status = "Oczekiwanie na liczby"
+    if request.method == "POST":
+        tekst = request.form["tekst"]
+        wybor = request.form["wybor"]
+
+        if wybor == "to_bin":
+            wynik = dk.to_bin(int(tekst))
+            status = f"{tekst} = 0b{wynik}"
+        elif wybor == "to_hex":
+            wynik = dk.to_hex(int(tekst))
+            status = f"{tekst} = 0x{wynik}"
+        elif wybor == "to_base64":
+            wynik = dk.to_base64(tekst)
+            status = f"'{tekst}' w base64 to '{wynik}'"
+        elif wybor == "from_base64":
+            wynik = dk.to_bin(int(tekst))
+            status = f"{tekst} = 0b{wynik}"
+
+    return render_template("dekodery.html", status=status)
 
 
 

@@ -1,19 +1,23 @@
 import click
 import base64
 import hashlib
+# __all__=["to_bin", "to_hex", "to_base64", "from_base64", "hash_md5", "hash_sha256"]
+"""
+Ten moduł odpowiada za wykonywanie różnych operacji enkodujących oraz dekodujących. 
+"""
 
 @click.command()
 @click.option("--liczba", help="podaj liczbe", prompt="podaj liczbe")
-def toBin(liczba : int) -> str:
+def to_bin(liczba: int) -> str:
     """
     Zamienia liczbe dziesiętną na binarną
 
-    :param a: liczba do zamiany
+    :param liczba: liczba do zamiany
     :type int
 
     :return: liczba w zapisie binarnym
     :rtype: str
-    
+
     """
     wynik = bin(int(liczba))
     print(wynik)
@@ -22,11 +26,11 @@ def toBin(liczba : int) -> str:
 
 @click.command()
 @click.option("--liczba", help="podaj liczbe", prompt="podaj liczbe")
-def toHex(liczba: int) -> str:
+def to_hex(liczba: int) -> str:
     """
     Zamienia liczbe dziesiętną na heksadecymalna
 
-    :param a: liczba do zamiany
+    :param liczba: liczba do zamiany
     :type int
 
     :return: liczba w zapisie heksadecymalnym
@@ -40,7 +44,7 @@ def toHex(liczba: int) -> str:
 
 @click.command()
 @click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
-def toBase64(tekst : str) -> str:
+def to_base64(tekst: str) -> str:
     """
     Zamienia tekst na jego reprezentacje w base64
 
@@ -57,13 +61,14 @@ def toBase64(tekst : str) -> str:
     print(wynik)
     return wynik
 
+
 @click.command()
 @click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
-def fromBase64(tekst : str) -> str:
+def from_base64(tekst: str) -> str:
     """
     Zamienia zakodowany string w base64 na czytelny tekst
 
-    :param b64string: zakodowany tekst
+    :param tekst: zakodowany tekst
     :type str
 
     :return: czytelny odkodowany tekst
@@ -76,9 +81,10 @@ def fromBase64(tekst : str) -> str:
     print(wynik)
     return wynik
 
+
 @click.command()
 @click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
-def hashMD5(tekst : str):
+def hash_md5(tekst: str):
     """
     Zwraca hash md5 dla wprowadzonego tekstu
 
@@ -93,9 +99,10 @@ def hashMD5(tekst : str):
     print(wynik.hexdigest())
     return wynik.hexdigest()
 
+
 @click.command()
 @click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
-def hashSHA256(tekst : str):
+def hash_sha256(tekst: str):
     """
     Zwraca hash SHA256 dla wprowadzonego tekstu
 
@@ -109,3 +116,4 @@ def hashSHA256(tekst : str):
     wynik = hashlib.sha256(tekst.encode('ascii'))
     print(wynik.hexdigest())
     return wynik.hexdigest()
+
