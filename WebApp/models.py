@@ -24,3 +24,15 @@ class Dodawanie(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     def __repr__(self):
         return f'{self.liczba1}+{self.liczba2}={self.wynik}, '
+
+
+class Dekodery(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    tekst = db.Column(db.Text)
+    wynik = db.Column(db.Text)
+    operacja = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"{self.operacja}, Wejscie: {self.tekst}, Wyjscie: {self.wynik}"
+
