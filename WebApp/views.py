@@ -3,9 +3,7 @@ from WebApp.models import *
 from flask import render_template, request
 
 from Dodaj.main import dodaj
-
-"""
-"""
+import Dekoder.main as dk
 
 
 @app.route("/")
@@ -24,7 +22,7 @@ def home_route():
 @app.route("/method/<var>", methods=["GET", "POST"])
 def method_route(var):
     """
-    przykład adres:port/api/cos
+    przykład adres:port/method/cos
     """
     site = var + '.html'
     return render_template(site, var=var)
@@ -79,6 +77,51 @@ def przyklad():
     #################################################
 
     return render_template("dodawanie.html", status=status, stare_wyniki=stare_wyniki)
+
+
+@app.route("/method/dekodery", methods=["GET", "POST"])
+def dekoder():
+    status = "Oczekiwanie na liczby"
+    if request.method == "POST":
+        tekst = request.form["tekst"]
+        wybor = request.form["wybor"]
+        operacja = ''
+
+        if wybor == "to_bin":
+            wynik = dk._to_bin(tekst)
+            status = f"{tekst} = 0b{wynik}"
+            operacja = 'toBin'
+        elif wybor == "to_hex":
+            wynik = dk._to_hex(tekst)
+            status = f"{tekst} = 0x{wynik}"
+            operacja = 'toHex'
+        elif wybor == "to_base64":
+            wynik = dk._to_base64(tekst)
+            status = f"'{tekst}' w base64 to '{wynik}'"
+            operacja = 'toBase64'
+        elif wybor == "from_base64":
+            wynik = dk._from_base64(tekst)
+            status = f"{tekst} = 0b{wynik}"
+            operacja = 'fromBase64'
+        elif wybor == "to_sha":
+            wynik = dk._hash_sha256(tekst)
+            status = f"'{tekst}' w sha256 to '{wynik}'"
+            operacja = 'toHashSha256'
+        elif wybor == "to_md5":
+            wynik = dk._hash_md5(tekst)
+            status = f"'{tekst}' w md5 to '{wynik}'"
+            operacja = 'toHashMd5'
+
+        db_wynik = Dekodery(tekst=tekst, wynik=wynik, operacja=operacja)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+
+    stare_wyniki = Dekodery.query.filter().all()
+
+    return render_template("dekodery.html", status=status, stare_wyniki=stare_wyniki)
 
 
 

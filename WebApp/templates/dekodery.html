@@ -6,9 +6,16 @@
 <b>STATUS</b> = {{ status }}
 
 <form  method="POST">
-	<input type="username" name="liczba1" placeholder="Liczba 1">
-	<input type="username" name="liczba2" placeholder="Liczba 2">
-<input type="submit" value="Dodaj">
+	<input type="text" name="tekst" placeholder="Tekst/liczba">
+	<select name="wybor">
+		<option value="to_bin">Konwertuj liczbe na binarna</option>
+		<option value="to_hex">Konwertuj liczbe na heksadecymalna</option>
+		<option value="to_base64">Konwertuj tekst do base64</option>
+		<option value="from_base64">Konwertuj tekst z base64</option>
+		<option value="to_sha">Hashuj za pomoca sha256</option>
+		<option value="to_md5">Hashuj za pomoca md5</option>
+	</select>
+	<input type="submit" value="Wykonaj">
 </form>
 
 
