@@ -118,6 +118,11 @@ def dekoder():
             operacja = 'toHashMd5'
 
         db_wynik = Dekodery(tekst=tekst, wynik=wynik, operacja=operacja)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
 
     stare_wyniki = Dekodery.query.filter().all()
 
