@@ -11,8 +11,8 @@ setup(
     packages=['MiejscaZerowe'],
     entry_points={
         'console_scripts': [
-            'metoda_bisekcji = Dekoder.main:metoda_bisekcji',
-            'metoda_siecznych = Dekoder.main:metoda_siecznych',
+            'metoda_bisekcji = MiejscaZerowe.main:metoda_bisekcji',
+            'metoda_siecznych = MiejscaZerowe.main:metoda_siecznych',
 
         ]
     }
