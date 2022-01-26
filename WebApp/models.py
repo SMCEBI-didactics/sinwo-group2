@@ -36,3 +36,12 @@ class Dekodery(db.Model):
     def __repr__(self):
         return f"{self.operacja}, Wejscie: {self.tekst}, Wyjscie: {self.wynik}"
 
+class MiejscaZerowe(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    fun = db.Column(db.Text)
+    a = db.Column(db.Text)
+    b = db.Column(db.Text)
+    wynik = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    def __repr__(self):
+        return f'Na przedziale funkcji {self.fun} od {self.a} do {self.b} miejsce zerowe to {self.wynik}'
