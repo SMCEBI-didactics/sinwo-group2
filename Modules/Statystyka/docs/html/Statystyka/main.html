@@ -29,7 +29,7 @@
 <pre><code class="python">import click
 
 @click.command()
-@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: [1,3,4]&#34;)
+@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
 def srednia(Lista):
     &#34;&#34;&#34;
     Oblicza średnią z podanej listy.
@@ -40,10 +40,11 @@ def srednia(Lista):
     Returns:
         wynik (num): wyznaczona srednia.
     &#34;&#34;&#34;
+    B = list(map(int,Lista.replace(&#34;,&#34;,&#34; &#34;).split()))
     wynik = 0
-    for i in Lista:
+    for i in B:
         wynik += i
-    wynik /= len(Lista)
+    wynik /= len(B)
     return wynik
 
 def _srednia(Lista):
@@ -56,14 +57,16 @@ def _srednia(Lista):
     Returns:
         wynik (num): wyznaczona srednia.
     &#34;&#34;&#34;
+    #B = list(map(int,Lista.replace(&#34;,&#34;,&#34; &#34;).split()))
+    B = Lista.copy()
     wynik = 0
-    for i in Lista:
+    for i in B:
         wynik += i
-    wynik /= len(Lista)
+    wynik /= len(B)
     return wynik
 
 @click.command()
-@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: [1,3,4]&#34;)
+@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
 def mediana(Lista):
     &#34;&#34;&#34;
     Oblicza medianę (wynik środkowy) z podanej listy.
@@ -74,11 +77,11 @@ def mediana(Lista):
     Returns:
         num: wyznaczona mediana.
     &#34;&#34;&#34;
-    y = Lista.copy()
-    y.sort()
-    if len(y) % 2 == 0:
-        return ((y[len(y) // 2 - 1] + y[len(y) // 2]) / 2)
-    return y[len(y) // 2]
+    B = list(map(int,Lista.replace(&#34;,&#34;,&#34; &#34;).split()))
+    B.sort()
+    if len(B) % 2 == 0:
+        return ((B[len(B) // 2 - 1] + y[len(B) // 2]) / 2)
+    return B[len(B) // 2]
 
 def _mediana(Lista):
     &#34;&#34;&#34;
@@ -90,14 +93,15 @@ def _mediana(Lista):
     Returns:
         num: wyznaczona mediana.
     &#34;&#34;&#34;
-    y = Lista.copy()
-    y.sort()
-    if len(y) % 2 == 0:
-        return ((y[len(y) // 2 - 1] + y[len(y) // 2]) / 2)
-    return y[len(y) // 2]
+    #B = list(map(int,Lista.replace(&#34;,&#34;,&#34; &#34;).split()))
+    B=Lista.copy()
+    B.sort()
+    if len(B) % 2 == 0:
+        return ((B[len(B) // 2 - 1] + B[len(B) // 2]) / 2)
+    return B[len(B) // 2]
 
 @click.command()
-@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: [1,3,4]&#34;)
+@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
 def odchylenie(Lista):
     &#34;&#34;&#34;
     Oblicza odchylenie standardowe dla liczb z podanej listy.
@@ -108,11 +112,12 @@ def odchylenie(Lista):
     Returns:
         sigma (num): wyznaczone odchylenie standardowe.
     &#34;&#34;&#34;
-    sr = _srednia(Lista)
+    B = list(map(int,Lista.replace(&#34;,&#34;,&#34; &#34;).split()))
+    sr = _srednia(B)
     sigma = 0
-    for i in Lista:
+    for i in B:
         sigma += (i - sr)**2
-    sigma = (sigma / len(Lista))**0.5
+    sigma = (sigma / len(B))**0.5
     return sigma
 
 def _odchylenie(Lista):
@@ -125,16 +130,18 @@ def _odchylenie(Lista):
     Returns:
         sigma (num): wyznaczone odchylenie standardowe.
     &#34;&#34;&#34;
-    sr = _srednia(Lista)
+    #B = list(map(int,Lista.replace(&#34;,&#34;,&#34; &#34;).split()))
+    B = Lista.copy()
+    sr = _srednia(B)
     sigma = 0
-    for i in Lista:
+    for i in B:
         sigma += (i - sr)**2
-    sigma = (sigma / len(Lista))**0.5
+    sigma = (sigma / len(B))**0.5
     return sigma
 
 @click.command()
-@click.option(&#34;--X&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj pierwszą listę z 3-10 danymi typu: [1,3,4]&#34;)
-@click.option(&#34;--Y&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj drugą listę z 3-10 danymi typu: [1,3,4]&#34;)
+@click.option(&#34;--X&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj pierwszą listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
+@click.option(&#34;--Y&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj drugą listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
 def regresjaliniowa(X, Y):
     &#34;&#34;&#34;
     Oblicza regresję liniową dwóch zestawów danych.
@@ -147,13 +154,15 @@ def regresjaliniowa(X, Y):
         a (num): nachylenie linii regresji
         b (num): wyraz wolny
     &#34;&#34;&#34;
-    srX = _srednia(X)
-    srY = _srednia(Y)
+    A = list(map(int,X.replace(&#34;,&#34;,&#34; &#34;).split()))
+    B = list(map(int,Y.replace(&#34;,&#34;,&#34; &#34;).split()))
+    srX = _srednia(A)
+    srY = _srednia(B)
     tmp = 0
     a = 0
-    for i in range(len(X)):
-        a += (X[i] - srX) * (Y[i] - srY)
-    for j in X:
+    for i in range(len(A)):
+        a += (A[i] - srX) * (B[i] - srY)
+    for j in A:
         tmp += (j - srX)**2
     a /= tmp
     b = srY - a * srX
@@ -184,8 +193,8 @@ def _regresjaliniowa(X, Y):
     return a, b
 
 @click.command()
-@click.option(&#34;--X&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj pierwszą listę z 3-10 danymi typu: [1,3,4]&#34;)
-@click.option(&#34;--Y&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj drugą listę z 3-10 danymi typu: [1,3,4]&#34;)
+@click.option(&#34;--X&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj pierwszą listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
+@click.option(&#34;--Y&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj drugą listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
 def korelacja(X, Y):
     &#34;&#34;&#34;
     Oblicza korelację Piersona dwóch zestawów danych.
@@ -197,14 +206,16 @@ def korelacja(X, Y):
     Returns:
         kor (num): wyznaczona korelacja.
     &#34;&#34;&#34;
-    srX = _srednia(X)
-    srY = _srednia(Y)
-    sX = _odchylenie(X)
-    sY = _odchylenie(Y)
+    A = list(map(int,X.replace(&#34;,&#34;,&#34; &#34;).split()))
+    B = list(map(int,Y.replace(&#34;,&#34;,&#34; &#34;).split()))
+    srX = _srednia(A)
+    srY = _srednia(B)
+    sX = _odchylenie(A)
+    sY = _odchylenie(B)
     kor = 0
-    for i in range(len(X)):
-        kor += (X[i] - srX) * (Y[i] - srY)
-    kor = kor / (len(X) * sX * sY)
+    for i in range(len(A)):
+        kor += (A[i] - srX) * (B[i] - srY)
+    kor = kor / (len(A) * sX * sY)
     return kor
 
 def _korelacja(X, Y):
@@ -229,20 +240,20 @@ def _korelacja(X, Y):
     return kor
 
 @click.command()
-@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: [1,3,4]&#34;)
+@click.option(&#34;--Lista&#34;, help=&#34;podaj listę&#34;, prompt=&#34;podaj listę z 3-10 danymi typu: &#39;1 3 4&#39;&#34;)
 def testshapiro(Lista):
     &#34;&#34;&#34;
-    Przeprowadza test Shapiro-Wilka dla podanej listy.
+    Przeprowadza test Shapiro-Wilka dla listy o wielkości 3-10.
     
     Args:
         Lista (list): lista z liczbami.
         
     Returns:
-        bool: wynik testu.
+        str: wynik testu.
     &#34;&#34;&#34;
+    y = list(map(int,Lista.replace(&#34;,&#34;,&#34; &#34;).split()))
     B = [[0.7071],[0.6872, 0.1677],[0.6646, 0.2413],[0.6431, 0.2806, 0.0875],[0.6233, 0.3031, 0.1401], [0.6052, 0.3164, 0.1743, 0.0561],[0.5888, 0.3244, 0.1976, 0.0947],[0.5739, 0.3291, 0.2141, 0.1224, 0.0399]]
     W = [0.767, 0.748, 0.762, 0.788, 0.803, 0.818, 0.829, 0.842]
-    y = Lista.copy()
     y.sort()
     srY = _srednia(y)
     S = 0
@@ -253,19 +264,19 @@ def testshapiro(Lista):
     for j in range(m):
         b += B[len(y) - 3][j] * (y[len(y) - 1 - j] - y[j])
     if W[len(y) - 3] &lt; b * b / S:
-        return True
-    return False
+        return &#34;Tak&#34;
+    return &#34;Nie&#34;
 
 
 def _testshapiro(Lista):
     &#34;&#34;&#34;
-    Przeprowadza test Shapiro-Wilka dla podanej listy.
+    Przeprowadza test Shapiro-Wilka dla listy o wielkości 3-10.
 
     Args:
         Lista (list): lista z liczbami.
 
     Returns:
-        bool: wynik testu.
+        str: wynik testu.
     &#34;&#34;&#34;
     B = [[0.7071],[0.6872, 0.1677],[0.6646, 0.2413],[0.6431, 0.2806, 0.0875],[0.6233, 0.3031, 0.1401],[0.6052, 0.3164, 0.1743, 0.0561],[0.5888, 0.3244, 0.1976, 0.0947],[0.5739, 0.3291, 0.2141, 0.1224, 0.0399]]
     W = [0.767, 0.748, 0.762, 0.788, 0.803, 0.818, 0.829, 0.842]
@@ -280,8 +291,8 @@ def _testshapiro(Lista):
     for j in range(m):
         b += B[len(y) - 3][j] * (y[len(y) - 1 - j] - y[j])
     if W[len(y) - 3] &lt; b * b / S:
-        return True
-    return False</code></pre>
+        return &#34;Tak&#34;
+    return &#34;Nie&#34;</code></pre>
 </details>
 </section>
 <section>
