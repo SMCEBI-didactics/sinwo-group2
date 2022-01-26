@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block body %}
+
+<h2>Statystyka</h2>
+
+<b>STATUS</b> = {{ status }}
+
+<form  method="POST">
+	<input type="text" name="lista1" placeholder="Lista 1">
+	<input type="text" name="lista2" placeholder="Lista 2">
+	<select name="wybor">
+		<option value="srednia">Wylicz średnią z listy</option>
+		<option value="mediana">Wylicz medianę z listy</option>
+		<option value="odchylenie">Wylicz odchylenie standardowe z listy</option>
+		<option value="regresjaliniowa">Wyznacz regresję liniową dwóch list</option>
+		<option value="korelacja">Wyznacz korelację Piersona dwóch list</option>
+		<option value="testshapiro">Wykonaj test Shapiro-Wilka</option>
+	</select>
+<input type="submit" value="Wykonaj">
+</form>
+
+
+<b>stare wyniki:</b> <hr>
+
+{% for wyniki in stare_wyniki %}
+czas: {{ wyniki.timestamp.strftime("%H:%M %d-%m-%Y") }} wykonane działanie: {{ wyniki }} <hr>
+{% endfor %}
+
+<hr>
+
+
+{% endblock %}

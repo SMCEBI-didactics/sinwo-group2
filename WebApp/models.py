@@ -24,3 +24,13 @@ class Dodawanie(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     def __repr__(self):
         return f'{self.liczba1}+{self.liczba2}={self.wynik}, '
+
+class Statystyka(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    lista1 = db.Column(db.Text)
+    lista2 = db.Column(db.Text)
+    wynik = db.Column(db.Text)
+    dzialanie = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    def __repr__(self):
+        return f"{self.dzialanie} Lista1: {self.lista1} Lista2: {self.lista2}, Wynik: {self.wynik}"

@@ -4,6 +4,6 @@ Flask-SQLAlchemy
 python-dateutil
 
 Modules/Dodaj/
-
+Modules/Statystyka/
 
 

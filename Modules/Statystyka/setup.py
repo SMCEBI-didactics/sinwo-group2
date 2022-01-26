@@ -3,10 +3,10 @@ from setuptools import setup
 setup(
     name="Statystyka",
     description="Moduł z wybranymi elementami statystyki",
-    version="v1.0",
+    version="1.0",
     author="Adam Wowra",
     author_email="",
-    licence="MIT",
+    license="MIT",
     install_requires=["click"],
     packages=['Statystyka'],
     entry_points={
