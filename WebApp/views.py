@@ -117,7 +117,7 @@ def statystyka():
     stare_wyniki = Statystyka.query.filter().all() 
 
 
-    return render_template("Statystyka.html", status=status, stare_wyniki=stare_wyniki)
+    return render_template("statystyka.html", status=status, stare_wyniki=stare_wyniki)
 
 
 @app.route("/method/dekodery", methods=["GET", "POST"])
