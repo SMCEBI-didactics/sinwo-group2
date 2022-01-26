@@ -90,22 +90,22 @@ def statystyka():
         wybor = request.form["wybor"]
         
         if wybor == "srednia":
-            wynik = stat._srednia(X)
+            wynik = stat.srednia(X)
             status = f"{wybor} {X} {wynik}"
         elif wybor == "mediana":
-            wynik = stat._mediana(X)
+            wynik = stat.mediana(X)
             status = f"{wybor} {X} {wynik}"
         elif wybor == "odchylenie":
-            wynik = stat._odchylenie(X)
+            wynik = stat.odchylenie(X)
             status = f"{wybor} {X} {wynik}"
         elif wybor == "regresjaliniowa":
-            wynik = stat._regresjaliniowa(X,Y)
+            wynik = stat.regresjaliniowa(X,Y)
             status = f"{wybor} {X} {Y} {wynik}"
         elif wybor == "korelacja":
-            wynik = stat._korelacja(X,Y)
+            wynik = stat.korelacja(X,Y)
             status = f"{wybor} {X} {Y} {wynik}"
         elif wybor == "testshapiro":
-            wynik = stat._testshapiro(X)
+            wynik = stat.testshapiro(X)
             status = f"{wybor} {X} {wynik}"
         db_wynik = Statystyka(dzialanie=wybor, lista1=X, lista2=Y, wynik=wynik)
         try:
