@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block body %}
+
+<h2>Miejsca zerowe</h2>
+
+
+<b>STATUS</b> = {{ status }}
+
+<form  method="POST">
+    <select name="wybor">
+    <option value="metoda_bisekcji"> Wyznaczanie miejsca zerowego metoda bisekcji</option>
+    <option value="metoda_siecznych">Wyznaczanie miejsca zerowego metoda siecznych</option>
+    </select>
+    <input type="text" name="fun" placeholder="fun">
+    <input type="number" name="a" placeholder="a">
+    <input type="number" name="b" placeholder="b">
+    <input type="submit" value="Wykonaj">
+</form>
+
+<b>stare wyniki:</b> <hr>
+
+{% for wyniki in stare_wyniki %}
+czas: {{ wyniki.timestamp.strftime("%H:%M %d-%m-%Y") }} wykonane działanie: {{ wyniki }} <hr>
+{% endfor %}
+
+<hr>
+
+
+{% endblock %}

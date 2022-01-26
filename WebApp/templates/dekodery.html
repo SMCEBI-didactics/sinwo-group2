@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block body %}
+
+<h2>Dekodery</h2>
+
+<b>STATUS</b> = {{ status }}
+
+<form  method="POST">
+	<input type="text" name="tekst" placeholder="Tekst/liczba">
+	<select name="wybor">
+		<option value="to_bin">Konwertuj liczbe na binarna</option>
+		<option value="to_hex">Konwertuj liczbe na heksadecymalna</option>
+		<option value="to_base64">Konwertuj tekst do base64</option>
+		<option value="from_base64">Konwertuj tekst z base64</option>
+		<option value="to_sha">Hashuj za pomoca sha256</option>
+		<option value="to_md5">Hashuj za pomoca md5</option>
+	</select>
+	<input type="submit" value="Wykonaj">
+</form>
+
+
+<b>stare wyniki:</b> <hr>
+
+{% for wyniki in stare_wyniki %}
+czas: {{ wyniki.timestamp.strftime("%H:%M %d-%m-%Y") }} wykonane działanie: {{ wyniki }} <hr>
+{% endfor %}
+
+<hr>
+
+
+{% endblock %}
+

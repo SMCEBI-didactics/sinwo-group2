@@ -2,3 +2,8 @@
 *build*
 *egg-info
 *venv*
+*dist*
+.idea
+%SystemDrive%
+database
+*.DS_Store

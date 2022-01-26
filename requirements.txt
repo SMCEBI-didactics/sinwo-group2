@@ -4,6 +4,8 @@ Flask-SQLAlchemy
 python-dateutil
 
 Modules/Dodaj/
-
-
-
+Modules/Dekoder/
+Modules/LiczbyPierwsze/
+Modules/Statystyka/
+Modules/Liczby_pseudolosowe/
+Modules/MiejscaZerowe/

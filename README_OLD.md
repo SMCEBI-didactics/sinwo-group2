@@ -1,6 +1,7 @@
-# Aplikacja webowa
+# WebApp Core
 
-## Aby uruchomić aplikacje należy wykonać poniższe instrukcje
+### Żeby testować działanie aplikacji odpalcie wszystko z 'Instalacja zależności' i 'Użycie' aż do `flask run -h 0.0.0.0 -p 9999` włącznie
+Wtedy serwer powinien się postawić na localhoscie, także można na niego wchodzić przez wpisanie `127.0.0.1:9999` w adres przeglądarki.
 
 ### Instalacja zależności:
 
@@ -41,4 +42,32 @@ adres oraz port może być również zdefiniowany przez zmienne środowiskowe:
 ```console
 (flask_venv) user@host:~$ export FLASK_RUN_HOST=0.0.0.0
 (flask_venv) user@host:~$ export FLASK_RUN_PORT=9999
+```
+
+## użycie Makefile
+
+### inicjalizacja lub  aktualizacja struktury bazy 
+
+```bash
+make update-db
+```
+
+### Docker
+
+#### Dockerfile
+
+```console
+user@host:~$ sudo docker build . -t wa-core:vX.X
+user@host:~$ make update-db
+#nasluchiwanie na porcie 9999
+user@host:~$ sudo docker run --rm  -p 9999:5555 -e FLASK_RUN_HOST=0.0.0.0 -e FLASK_RUN_PORT=5555 -v SCIEZKADOREPO/database/:/WebApp-Core/database/  wa-core:vX.X
+```
+
+#### Docker-compose
+
+uruchamia WebApplication oraz manager bazy 
+
+```console
+user@host:~$ make update-db
+user@host:~$ sudo docker-compose up
 ```
