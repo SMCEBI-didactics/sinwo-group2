@@ -23,6 +23,7 @@ def to_bin(liczba: str) -> str:
     print(wynik)
     return wynik
 
+
 def _to_bin(liczba: str) -> str:
     """
     Zamienia liczbe dziesiętną na binarną
@@ -36,6 +37,7 @@ def _to_bin(liczba: str) -> str:
     """
     wynik = bin(int(liczba))
     return wynik
+
 
 @click.command()
 @click.option("--liczba", help="podaj liczbe", prompt="podaj liczbe")
@@ -54,6 +56,7 @@ def to_hex(liczba: str) -> str:
     print(wynik)
     return wynik
 
+
 def _to_hex(liczba: str) -> str:
     """
     Zamienia liczbe dziesiętną na heksadecymalna
@@ -67,6 +70,7 @@ def _to_hex(liczba: str) -> str:
     """
     wynik = hex(int(liczba))
     return wynik
+
 
 @click.command()
 @click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
@@ -86,6 +90,7 @@ def to_base64(tekst: str) -> str:
     wynik = bytes2.decode('ascii')
     print(wynik)
     return wynik
+
 
 def _to_base64(tekst: str) -> str:
     """
@@ -123,6 +128,7 @@ def from_base64(tekst: str) -> str:
     print(wynik)
     return wynik
 
+
 def _from_base64(tekst: str) -> str:
     """
     Zamienia zakodowany string w base64 na czytelny tekst
@@ -138,6 +144,7 @@ def _from_base64(tekst: str) -> str:
     bytes2 = base64.b64decode(bytes1)
     wynik = bytes2.decode('ascii')
     return wynik
+
 
 @click.command()
 @click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
@@ -155,6 +162,7 @@ def hash_md5(tekst: str):
     wynik = hashlib.md5(tekst.encode())
     print(wynik.hexdigest())
     return wynik.hexdigest()
+
 
 def _hash_md5(tekst: str):
     """
@@ -187,6 +195,7 @@ def hash_sha256(tekst: str):
     wynik = hashlib.sha256(tekst.encode('ascii'))
     print(wynik.hexdigest())
     return wynik.hexdigest()
+
 
 def _hash_sha256(tekst: str):
     """

@@ -129,12 +129,14 @@ def dekoder():
 # inne przykłady #
 ##################
 
+
 @app.route("/api/<var>")
 def api_route(var):
     """
     przykład adres:port/api/cos
     """
     return render_template("api.html", var=var)
+
 
 @app.route("/loginbeta", methods=["GET", "POST"])
 def login_route():
@@ -147,6 +149,7 @@ def login_route():
         password = request.form["password"]
         state = f"{state} {login}:{password}"
     return render_template("login.html", state=state)
+
 
 @app.route("/prompt", methods=["GET", "POST"])
 def prompt():
