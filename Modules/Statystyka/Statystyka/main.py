@@ -193,7 +193,7 @@ def _regresjaliniowa(X, Y):
     a = 0
     for i in range(len(A)):
         a += (A[i] - srX) * (B[i] - srY)
-    for j in X:
+    for j in A:
         tmp += (j - srX)**2
     a /= tmp
     b = srY - a * srX
@@ -243,7 +243,7 @@ def _korelacja(X, Y):
     sX = __odchylenie(A)
     sY = __odchylenie(B)
     kor = 0
-    for i in range(len(X)):
+    for i in range(len(A)):
         kor += (A[i] - srX) * (B[i] - srY)
     kor = kor / (len(A) * sX * sY)
     return kor
