@@ -6,9 +6,14 @@
 <b>STATUS</b> = {{ status }}
 
 <form  method="POST">
-	<input type="username" name="liczba1" placeholder="Liczba 1">
-	<input type="username" name="liczba2" placeholder="Liczba 2">
-<input type="submit" value="Dodaj">
+	<select name="wybor">
+		<option value="Gauss"> Losowanie liczby rozkladem Gaussa</option>
+		<option value="Uniform"> Losowanie liczby rozkladem Jednorodnym</option>
+		<option value="Neumann"> Losowanie liczby metoda von Neumanna</option>
+	</select>
+	<input type="number" name="bottom" placeholder="bottom">
+	<input type="number" name="top" placeholder="top">
+	<input type="submit" value="Wykonaj">
 </form>
 
 

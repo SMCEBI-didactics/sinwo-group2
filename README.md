@@ -1,5 +1,7 @@
 # WebApp Core
 
+### Żeby testować działanie aplikacji odpalcie wszystko z 'Instalacja zależności' i 'Użycie' aż do `flask run -h 0.0.0.0 -p 9999` włącznie
+Wtedy serwer powinien się postawić na localhoscie, także można na niego wchodzić przez wpisanie `127.0.0.1:9999` w adres przeglądarki.
 
 ### Instalacja zależności:
 
@@ -19,9 +21,9 @@ user@host:~$ source flask_venv/bin/activate
 ```console
 
 (flask_venv) user@host:~$ mkdir database
-(flask_venv) user@host:~$ flask db init
-(flask_venv) user@host:~$ flask db migrate # po modyfikacji models.py wystarczy wykonać tylko 2 ostatnie polecenia 
-(flask_venv) user@host:~$ flask db upgrade
+(flask_venv) user@host:~$ flask db init -d database
+(flask_venv) user@host:~$ flask db migrate -d database # po modyfikacji models.py wystarczy wykonać tylko 2 ostatnie polecenia 
+(flask_venv) user@host:~$ flask db upgrade -d database
 
 ```
 

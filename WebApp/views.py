@@ -4,6 +4,10 @@ from flask import render_template, request
 
 from Dodaj.main import dodaj
 import Dekoder.main as dk
+import Liczby_pseudolosowe.main as LPL
+
+"""
+"""
 
 import Statystyka.main as stat
 """
@@ -113,12 +117,39 @@ def statystyka():
             db.session.commit()
         except Exception as e:
             print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
-
+            
     stare_wyniki = Statystyka.query.filter().all() 
-
-
     return render_template("statystyka.html", status=status, stare_wyniki=stare_wyniki)
+            
+@app.route("/method/liczby_losowe", methods=["GET", "POST"])
+def liczby_losowe():
+    """
+    """
+    status = "Oczekiwanie na granice"
+    if request.method == "POST":
+        bottom = request.form["bottom"]
+        top = request.form["top"]
+        wybor = request.form["wybor"]
+        
+        if wybor=="Gauss":
+            randomNumber = LPL._RandomNumberGeneratorGauss(bottom, top)
+        elif wybor=="Neumann":
+            randomNumber = LPL._RandomNumberGeneratorNeumann(bottom, top)
+        elif wybor=="Uniform":
+            randomNumber = LPL._RandomNumberGeneratorUniform(bottom, top)
 
+        
+        status = f"{randomNumber}"
+        
+        db_wynik = Liczby_pseudolosowe(bottom=bottom, top=top, randomNumber=randomNumber)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+
+    stare_wyniki = Liczby_pseudolosowe.query.filter().all() 
+    return render_template("liczby_losowe.html", status=status, stare_wyniki=stare_wyniki)
 
 @app.route("/method/dekodery", methods=["GET", "POST"])
 def dekoder():
@@ -163,7 +194,6 @@ def dekoder():
     stare_wyniki = Dekodery.query.filter().all()
 
     return render_template("dekodery.html", status=status, stare_wyniki=stare_wyniki)
-
 
 
 ##################
