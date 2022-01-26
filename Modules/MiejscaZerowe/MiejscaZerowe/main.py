@@ -4,7 +4,7 @@ import click
 @click.command()
 @click.option('--fun', type=str, prompt="Podaj wzor funkcji(x jako argument)")
 @click.option('--a', type=int, prompt="Podaj poczatek rozpatrywanego zakresu")
-@click.option('--a', type=int, prompt="Podaj koniec rozpatrywanego zakresu")
+@click.option('--b', type=int, prompt="Podaj koniec rozpatrywanego zakresu")
 def metoda_bisekcji(fun, a, b):
     
     """
@@ -67,6 +67,10 @@ def metoda_bisekcji(fun, a, b):
         if fb * fc > 0:
             b, fb = c, fc
     
+    if c is None:
+        print("Nie istnieje miejsce zerowe dla danego zakresu")
+    else:
+        print(c)
     return c
 
 def _metoda_bisekcji(fun, a, b):
@@ -137,7 +141,7 @@ def _metoda_bisekcji(fun, a, b):
 @click.command()
 @click.option('--fun', type=str, prompt="Podaj wzor funkcji(x jako argument)")
 @click.option('--a', type=int, prompt="Podaj poczatek rozpatrywanego zakresu")
-@click.option('--a', type=int, prompt="Podaj koniec rozpatrywanego zakresu")
+@click.option('--b', type=int, prompt="Podaj koniec rozpatrywanego zakresu")
 def metoda_siecznych(fun, a, b):
     
     """
@@ -199,7 +203,11 @@ def metoda_siecznych(fun, a, b):
             
         if fb * fc > 0:
             b, fb = c, fc
-        
+    
+    if c is None:
+        print("Nie istnieje miejsce zerowe dla danego zakresu")
+    else:
+        print(c)
     return c
 
 
