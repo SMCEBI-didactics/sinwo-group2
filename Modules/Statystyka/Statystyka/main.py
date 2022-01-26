@@ -171,7 +171,7 @@ def regresjaliniowa(X, Y):
         tmp += (j - srX)**2
     a /= tmp
     b = srY - a * srX
-    return a, b
+    return str(a)+" "+str(b)
 
 def _regresjaliniowa(X, Y):
     """
@@ -197,7 +197,7 @@ def _regresjaliniowa(X, Y):
         tmp += (j - srX)**2
     a /= tmp
     b = srY - a * srX
-    return a, b
+    return str(a)+" "+str(b)
 
 @click.command()
 @click.option("--X", help="podaj listę", prompt="podaj pierwszą listę z 3-10 danymi typu: '1 3 4'")
