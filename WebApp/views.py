@@ -153,7 +153,7 @@ def miejsca_zerowe():
     try:
             db.session.add(db_wynik)
             db.session.commit()
-        except Exception as e:
+    except Exception as e:
             print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
 
     stare_wyniki = MiejscaZerowe.query.filter().all()
