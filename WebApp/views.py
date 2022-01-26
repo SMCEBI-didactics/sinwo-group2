@@ -91,22 +91,22 @@ def statystyka():
         
         if wybor == "srednia":
             wynik = stat._srednia(X)
-            status = f"{wybor} {X} {wynik}"
+            status = f"{X} {wybor} {wynik}"
         elif wybor == "mediana":
             wynik = stat._mediana(X)
-            status = f"{wybor} {X} {wynik}"
+            status = f"{X} {wybor} {wynik}"
         elif wybor == "odchylenie":
             wynik = stat._odchylenie(X)
-            status = f"{wybor} {X} {wynik}"
+            status = f"{X} {wybor} {wynik}"
         elif wybor == "regresjaliniowa":
             wynik = stat._regresjaliniowa(X,Y)
-            status = f"{wybor} {X} {Y} {wynik}"
+            status = f"{X} ; {Y} {wybor} {wynik}"
         elif wybor == "korelacja":
             wynik = stat._korelacja(X,Y)
-            status = f"{wybor} {X} {Y} {wynik}"
+            status = f"{X} ; {Y} {wybor} {wynik}"
         elif wybor == "testshapiro":
             wynik = stat._testshapiro(X)
-            status = f"{wybor} {X} {wynik}"
+            status = f"{X} {wybor} {wynik}"
         db_wynik = Statystyka(dzialanie=wybor, lista1=X, lista2=Y, wynik=wynik)
         try:
             db.session.add(db_wynik)
