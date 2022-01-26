@@ -3,14 +3,11 @@ from WebApp.models import *
 from flask import render_template, request
 
 from Dodaj.main import dodaj
-<<<<<<< HEAD
 import Dekoder.main as dk
 
-=======
 import Statystyka.main as stat
 """
 """
->>>>>>> fa7622ec1f47c7653f35acddb33be23b05cf80b1
 
 @app.route("/")
 def home_route():
