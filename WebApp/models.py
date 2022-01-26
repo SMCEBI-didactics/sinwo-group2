@@ -35,6 +35,15 @@ class Dekodery(db.Model):
     def __repr__(self):
         return f"{self.operacja}, Wejscie: {self.tekst}, Wyjscie: {self.wynik}"
 
+class LiczbyPierwsze(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    n = db.Column(db.Integer)
+    wynik= db.Column(db.Integer)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    def __repr__(self):
+        return f'Najwieksza liczba pierwsza to {self.wynik} z {self.n}'
+
+
 class Statystyka(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     lista1 = db.Column(db.Text)
@@ -54,6 +63,7 @@ class Liczby_pseudolosowe(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     def __repr__(self):
         return f'Dolna granica: {self.bottom} Gorna granica: {self.top} :losowa liczba to: {self.randomNumber}, '
+
 
 class MiejscaZerowe(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,9 +1,11 @@
+from Modules.LiczbyPierwsze.LiczbyPierwsze.main import SieveOfEratosthenes
 from WebApp import app
 from WebApp.models import *
 from flask import render_template, request
 
 from Dodaj.main import dodaj
 import Dekoder.main as dk
+import LiczbyPierwsze.main as LP
 import Liczby_pseudolosowe.main as LPL
 import MiejscaZerowe.main as MZ
 import Statystyka.main as stat
@@ -30,7 +32,9 @@ def method_route(var):
     site = var + '.html'
     return render_template(site, var=var)
 
-#######################
+
+
+######################
 #######################
 #######################
 #   Przykłady użycia  #
@@ -39,9 +43,7 @@ def method_route(var):
 
 @app.route("/przyklad", methods=["GET", "POST"])
 def przyklad():
-    """
-    Przykład: dodawanie 2 liczb
-    """
+
     # pobranie zawartości liczb
     status = "Oczekiwanie na liczby"
     if request.method == "POST":
@@ -190,6 +192,31 @@ def dekoder():
     stare_wyniki = Dekodery.query.filter().all()
 
     return render_template("dekodery.html", status=status, stare_wyniki=stare_wyniki)
+    
+@app.route("/method/liczby_pierwsze", methods=["GET", "POST"])
+def liczby_pierwsze():
+    """
+    Przykład: Znajdowanie najwiekszej liczby pierwszej
+    """
+    status = "Oczekiwanie na liczbe"
+    if request.method == "POST":
+        n = request.form["n"]
+        wybor = request.form["wybor"]
+
+        if wybor == "primes_method1":
+            wynik = LP.primes_method1(n)
+        elif wybor == "SieveOfEratosthenes":
+            wynik = LP.SieveOfEratosthenes(n)
+        status = f"Najwieksza liczba pierwsa to {wynik} z {n}"
+        db_wynik = LiczbyPierwsze(n=n, wynik=wynik)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+            
+    stare_wyniki = LiczbyPierwsze.query.filter().all() 
+    return render_template("liczby_pierwsze.html", status=status, stare_wyniki=stare_wyniki)
 
 @app.route("/method/miejsca_zerowe", methods=["GET", "POST"])
 def miejsca_zerowe():
@@ -220,7 +247,6 @@ def miejsca_zerowe():
 
     stare_wyniki = MiejscaZerowe.query.filter().all()
     return render_template("miejsca_zerowe.html", status=status, stare_wyniki=stare_wyniki)
-        
         
 
 ##################
