@@ -1,52 +1,53 @@
 import click
 
 @click.command()
-@click.option("--Lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
-def srednia(Lista):
+@click.option("--lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
+def srednia(lista):
     """
     Oblicza średnią z podanej listy.
     
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
         
     Returns:
         wynik (num): wyznaczona srednia.
     """
-    B = list(map(int,Lista.replace(","," ").split()))
+    B = list(map(int,lista.replace(","," ").split()))
     wynik = 0
     for i in B:
         wynik += i
     wynik /= len(B)
+    print(wynik)
     return wynik
 
-def _srednia(Lista):
+def _srednia(lista):
     """
     Oblicza średnią z podanej listy.
 
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
 
     Returns:
         wynik (num): wyznaczona srednia.
     """
-    B = list(map(int,Lista.replace(","," ").split()))
+    B = list(map(int,lista.replace(","," ").split()))
     wynik = 0
     for i in B:
         wynik += i
     wynik /= len(B)
     return wynik
 
-def __srednia(Lista):
+def __srednia(lista):
     """
     Wewnętrzna funkcja do liczenia średniej.
 
     Args:
-        Lista (list): lista z liczbami.
+        lista (list): lista z liczbami.
 
     Returns:
         wynik (num): wyznaczona srednia.
     """
-    B = Lista.copy()
+    B = lista.copy()
     wynik = 0
     for i in B:
         wynik += i
@@ -54,34 +55,36 @@ def __srednia(Lista):
     return wynik
 
 @click.command()
-@click.option("--Lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
-def mediana(Lista):
+@click.option("--lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
+def mediana(lista):
     """
     Oblicza medianę (wynik środkowy) z podanej listy.
     
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
         
     Returns:
         num: wyznaczona mediana.
     """
-    B = list(map(int,Lista.replace(","," ").split()))
+    B = list(map(int,lista.replace(","," ").split()))
     B.sort()
     if len(B) % 2 == 0:
+        print(((B[len(B) // 2 - 1] + y[len(B) // 2]) / 2))
         return ((B[len(B) // 2 - 1] + y[len(B) // 2]) / 2)
+    print(B[len(B) // 2])
     return B[len(B) // 2]
 
-def _mediana(Lista):
+def _mediana(lista):
     """
     Oblicza medianę (wynik środkowy) z podanej listy.
 
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
 
     Returns:
         num: wyznaczona mediana.
     """
-    B = list(map(int,Lista.replace(","," ").split()))
+    B = list(map(int,lista.replace(","," ").split()))
     B.sort()
     if len(B) % 2 == 0:
         return ((B[len(B) // 2 - 1] + B[len(B) // 2]) / 2)
@@ -89,36 +92,37 @@ def _mediana(Lista):
 
 
 @click.command()
-@click.option("--Lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
-def odchylenie(Lista):
+@click.option("--lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
+def odchylenie(lista):
     """
     Oblicza odchylenie standardowe dla liczb z podanej listy.
     
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
         
     Returns:
         sigma (num): wyznaczone odchylenie standardowe.
     """
-    B = list(map(int,Lista.replace(","," ").split()))
+    B = list(map(int,lista.replace(","," ").split()))
     sr = __srednia(B)
     sigma = 0
     for i in B:
         sigma += (i - sr)**2
     sigma = (sigma / len(B))**0.5
+    print(sigma)
     return sigma
 
-def _odchylenie(Lista):
+def _odchylenie(lista):
     """
     Oblicza odchylenie standardowe dla liczb z podanej listy.
 
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
 
     Returns:
         sigma (num): wyznaczone odchylenie standardowe.
     """
-    B = list(map(int,Lista.replace(","," ").split()))
+    B = list(map(int,lista.replace(","," ").split()))
     sr = __srednia(B)
     sigma = 0
     for i in B:
@@ -126,17 +130,17 @@ def _odchylenie(Lista):
     sigma = (sigma / len(B))**0.5
     return sigma
 
-def __odchylenie(Lista):
+def __odchylenie(lista):
     """
     Wewnętrzna funkcja do liczenia odchylenia standardowego.
 
     Args:
-        Lista (list): lista z liczbami.
+        lista (list): lista z liczbami.
 
     Returns:
         sigma (num): wyznaczone odchylenie standardowe.
     """
-    B = Lista.copy()
+    B = lista.copy()
     sr = __srednia(B)
     sigma = 0
     for i in B:
@@ -171,6 +175,7 @@ def regresjaliniowa(X, Y):
         tmp += (j - srX)**2
     a /= tmp
     b = srY - a * srX
+    print(str(a)+" "+str(b))
     return str(a)+" "+str(b)
 
 def _regresjaliniowa(X, Y):
@@ -223,6 +228,7 @@ def korelacja(X, Y):
     for i in range(len(A)):
         kor += (A[i] - srX) * (B[i] - srY)
     kor = kor / (len(A) * sX * sY)
+    print(kor)
     return kor
 
 def _korelacja(X, Y):
@@ -249,18 +255,18 @@ def _korelacja(X, Y):
     return kor
 
 @click.command()
-@click.option("--Lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
-def testshapiro(Lista):
+@click.option("--lista", help="podaj listę", prompt="podaj listę z 3-10 danymi typu: '1 3 4'")
+def testshapiro(lista):
     """
     Przeprowadza test Shapiro-Wilka dla listy o wielkości 3-10.
     
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
         
     Returns:
         str: wynik testu.
     """
-    y = list(map(int,Lista.replace(","," ").split()))
+    y = list(map(int,lista.replace(","," ").split()))
     B = [[0.7071],[0.6872, 0.1677],[0.6646, 0.2413],[0.6431, 0.2806, 0.0875],[0.6233, 0.3031, 0.1401], [0.6052, 0.3164, 0.1743, 0.0561],[0.5888, 0.3244, 0.1976, 0.0947],[0.5739, 0.3291, 0.2141, 0.1224, 0.0399]]
     W = [0.767, 0.748, 0.762, 0.788, 0.803, 0.818, 0.829, 0.842]
     y.sort()
@@ -273,21 +279,23 @@ def testshapiro(Lista):
     for j in range(m):
         b += B[len(y) - 3][j] * (y[len(y) - 1 - j] - y[j])
     if W[len(y) - 3] < b * b / S:
+        print("Tak")
         return "Tak"
+    print("Nie")
     return "Nie"
 
 
-def _testshapiro(Lista):
+def _testshapiro(lista):
     """
     Przeprowadza test Shapiro-Wilka dla listy o wielkości 3-10.
 
     Args:
-        Lista (str): lista z liczbami.
+        lista (str): lista z liczbami.
 
     Returns:
-        str: wynik testu.
+        str: wynik testu.   
     """
-    y = list(map(int,Lista.replace(","," ").split()))
+    y = list(map(int,lista.replace(","," ").split()))
     B = [[0.7071],[0.6872, 0.1677],[0.6646, 0.2413],[0.6431, 0.2806, 0.0875],[0.6233, 0.3031, 0.1401],[0.6052, 0.3164, 0.1743, 0.0561],[0.5888, 0.3244, 0.1976, 0.0947],[0.5739, 0.3291, 0.2141, 0.1224, 0.0399]]
     W = [0.767, 0.748, 0.762, 0.788, 0.803, 0.818, 0.829, 0.842]
     y.sort()
