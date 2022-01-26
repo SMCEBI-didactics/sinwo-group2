@@ -7,5 +7,6 @@ Modules/Dodaj/
 Modules/Dekoder/
 Modules/Statystyka/
 Modules/Liczby_pseudolosowe/
+Modules/MiejscaZerowe/
 
 

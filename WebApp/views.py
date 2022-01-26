@@ -5,13 +5,9 @@ from flask import render_template, request
 from Dodaj.main import dodaj
 import Dekoder.main as dk
 import Liczby_pseudolosowe.main as LPL
-
-"""
-"""
-
+import MiejscaZerowe.main as MZ
 import Statystyka.main as stat
-"""
-"""
+
 
 @app.route("/")
 def home_route():
@@ -195,6 +191,37 @@ def dekoder():
 
     return render_template("dekodery.html", status=status, stare_wyniki=stare_wyniki)
 
+@app.route("/method/miejsca_zerowe", methods=["GET", "POST"])
+def miejsca_zerowe():
+    
+    """
+    Obliczanie miejsc zerowych
+    """
+    status = "Oczekiwanie na dane"
+    if request.method == "POST":
+        fun = request.form["fun"]
+        a = request.form["a"]
+        b = request.form["b"]
+        wybor = request.form["wybor"]
+        
+        if wybor == "metoda_bisekcji":
+            wynik = MZ._metoda_bisekcji(fun, a, b)
+        elif wybor == "metoda_siecznych":
+            wynik = MZ._metoda_bisekcji(fun, a, b)
+              
+        status = f"{wynik}"
+        db_wynik = MiejscaZerowe(fun=fun, a=a, b=b, wynik=wynik)
+
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+
+    stare_wyniki = MiejscaZerowe.query.filter().all()
+    return render_template("miejsca_zerowe.html", status=status, stare_wyniki=stare_wyniki)
+        
+        
 
 ##################
 # inne przykłady #
