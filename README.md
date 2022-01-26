@@ -1,5 +1,7 @@
 # WebApp Core
 
+### Żeby testować działanie aplikacji odpalcie wszystko z 'Instalacja zależności' i 'Użycie' aż do `flask run -h 0.0.0.0 -p 9999` włącznie
+Wtedy serwer powinien się postawić na localhoscie, także można na niego wchodzić przez wpisanie `127.0.0.1:9999` w adres przeglądarki.
 
 ### Instalacja zależności:
 
