@@ -3,8 +3,14 @@ from WebApp.models import *
 from flask import render_template, request
 
 from Dodaj.main import dodaj
+<<<<<<< HEAD
 import Dekoder.main as dk
 
+=======
+import Statystyka.main as stat
+"""
+"""
+>>>>>>> fa7622ec1f47c7653f35acddb33be23b05cf80b1
 
 @app.route("/")
 def home_route():
@@ -77,6 +83,44 @@ def przyklad():
     #################################################
 
     return render_template("dodawanie.html", status=status, stare_wyniki=stare_wyniki)
+
+@app.route("/method/statystyka", methods=["GET", "POST"])
+def statystyka():
+    status = "Oczekiwanie na listy"
+    if request.method == "POST":
+        X = request.form["lista1"]
+        Y = request.form["lista2"]
+        wybor = request.form["wybor"]
+        
+        if wybor == "srednia":
+            wynik = stat._srednia(X)
+            status = f"{wybor} {X} {wynik}"
+        elif wybor == "mediana":
+            wynik = stat._mediana(X)
+            status = f"{wybor} {X} {wynik}"
+        elif wybor == "odchylenie":
+            wynik = stat._odchylenie(X)
+            status = f"{wybor} {X} {wynik}"
+        elif wybor == "regresjaliniowa":
+            wynik = stat._regresjaliniowa(X,Y)
+            status = f"{wybor} {X} {Y} {wynik}"
+        elif wybor == "korelacja":
+            wynik = stat._korelacja(X,Y)
+            status = f"{wybor} {X} {Y} {wynik}"
+        elif wybor == "testshapiro":
+            wynik = stat._testshapiro(X)
+            status = f"{wybor} {X} {wynik}"
+        db_wynik = Statystyka(dzialanie=wybor, lista1=X, lista2=Y, wynik=wynik)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+
+    stare_wyniki = Statystyka.query.filter().all() 
+
+
+    return render_template("Statystyka.html", status=status, stare_wyniki=stare_wyniki)
 
 
 @app.route("/method/dekodery", methods=["GET", "POST"])
