@@ -6,9 +6,17 @@
 <b>STATUS</b> = {{ status }}
 
 <form  method="POST">
-	<input type="username" name="liczba1" placeholder="Liczba 1">
-	<input type="username" name="liczba2" placeholder="Liczba 2">
-<input type="submit" value="Dodaj">
+	<input type="text" name="lista1" placeholder="Lista 1">
+	<input type="text" name="lista2" placeholder="Lista 2">
+	<select name="wybor">
+		<option value="srednia">Wylicz średnią z listy 1</option>
+		<option value="mediana">Wylicz medianę z listy 1</option>
+		<option value="odchylenie">Wylicz odchylenie standardowe z listy 1 </option>
+		<option value="regresjaliniowa">Wyznacz regresję liniową dwóch list o równej wielkości</option>
+		<option value="korelacja">Wyznacz korelację Piersona dwóch list o równej wielkości</option>
+		<option value="testshapiro">Wykonaj test Shapiro-Wilka dla listy 1 o wielkości 3-10</option>
+	</select>
+<input type="submit" value="Wykonaj">
 </form>
 
 
@@ -22,4 +30,3 @@ czas: {{ wyniki.timestamp.strftime("%H:%M %d-%m-%Y") }} wykonane działanie: {{ 
 
 
 {% endblock %}
-

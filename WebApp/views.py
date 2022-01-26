@@ -5,10 +5,9 @@ from flask import render_template, request
 
 from Dodaj.main import dodaj
 import Dekoder.main as dk
-#from Dodaj.main import dodaj
 import LiczbyPierwsze.main as LP
-"""
-"""
+import Liczby_pseudolosowe.main as LPL
+import Statystyka.main as stat
 
 
 @app.route("/")
@@ -83,6 +82,71 @@ def przyklad():
 
     return render_template("dodawanie.html", status=status, stare_wyniki=stare_wyniki)
 
+@app.route("/method/statystyka", methods=["GET", "POST"])
+def statystyka():
+    status = "Oczekiwanie na listy"
+    if request.method == "POST":
+        X = request.form["lista1"]
+        Y = request.form["lista2"]
+        wybor = request.form["wybor"]
+        
+        if wybor == "srednia":
+            wynik = stat._srednia(X)
+            status = f"{X} {wybor} {wynik}"
+        elif wybor == "mediana":
+            wynik = stat._mediana(X)
+            status = f"{X} {wybor} {wynik}"
+        elif wybor == "odchylenie":
+            wynik = stat._odchylenie(X)
+            status = f"{X} {wybor} {wynik}"
+        elif wybor == "regresjaliniowa":
+            wynik = stat._regresjaliniowa(X,Y)
+            status = f"{X} ; {Y} {wybor} {wynik}"
+        elif wybor == "korelacja":
+            wynik = stat._korelacja(X,Y)
+            status = f"{X} ; {Y} {wybor} {wynik}"
+        elif wybor == "testshapiro":
+            wynik = stat._testshapiro(X)
+            status = f"{X} {wybor} {wynik}"
+        db_wynik = Statystyka(dzialanie=wybor, lista1=X, lista2=Y, wynik=wynik)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+            
+    stare_wyniki = Statystyka.query.filter().all() 
+    return render_template("statystyka.html", status=status, stare_wyniki=stare_wyniki)
+            
+@app.route("/method/liczby_losowe", methods=["GET", "POST"])
+def liczby_losowe():
+    """
+    """
+    status = "Oczekiwanie na granice"
+    if request.method == "POST":
+        bottom = request.form["bottom"]
+        top = request.form["top"]
+        wybor = request.form["wybor"]
+        
+        if wybor=="Gauss":
+            randomNumber = LPL._RandomNumberGeneratorGauss(bottom, top)
+        elif wybor=="Neumann":
+            randomNumber = LPL._RandomNumberGeneratorNeumann(bottom, top)
+        elif wybor=="Uniform":
+            randomNumber = LPL._RandomNumberGeneratorUniform(bottom, top)
+
+        
+        status = f"{randomNumber}"
+        
+        db_wynik = Liczby_pseudolosowe(bottom=bottom, top=top, randomNumber=randomNumber)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+
+    stare_wyniki = Liczby_pseudolosowe.query.filter().all() 
+    return render_template("liczby_losowe.html", status=status, stare_wyniki=stare_wyniki)
 
 @app.route("/method/dekodery", methods=["GET", "POST"])
 def dekoder():
@@ -151,11 +215,7 @@ def liczby_pierwsze():
             print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
 
 
-
-
     stare_wyniki = LiczbyPierwsze.query.filter().all() 
-
-
     return render_template("liczby_pierwsze.html", status=status, stare_wyniki=stare_wyniki)
 
 ##################
