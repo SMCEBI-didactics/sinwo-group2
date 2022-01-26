@@ -152,8 +152,8 @@ def regresjaliniowa(X, Y):
     Oblicza regresję liniową dwóch zestawów danych.
     
     Args:
-        X (list): pierwsza lista z liczbami.
-        Y (list): druga lista z liczbami.
+        X (str): pierwsza lista z liczbami.
+        Y (str): druga lista z liczbami.
         
     Returns:
         a (num): nachylenie linii regresji
@@ -178,19 +178,21 @@ def _regresjaliniowa(X, Y):
     Oblicza regresję liniową dwóch zestawów danych.
 
     Args:
-        X (list): pierwsza lista z liczbami.
-        Y (list): druga lista z liczbami.
+        X (str): pierwsza lista z liczbami.
+        Y (str): druga lista z liczbami.
 
     Returns:
         a (num): nachylenie linii regresji
         b (num): wyraz wolny
     """
-    srX = __srednia(X)
-    srY = __srednia(Y)
+    A = list(map(int,X.replace(","," ").split()))
+    B = list(map(int,Y.replace(","," ").split()))
+    srX = __srednia(A)
+    srY = __srednia(B)
     tmp = 0
     a = 0
-    for i in range(len(X)):
-        a += (X[i] - srX) * (Y[i] - srY)
+    for i in range(len(A)):
+        a += (A[i] - srX) * (B[i] - srY)
     for j in X:
         tmp += (j - srX)**2
     a /= tmp
@@ -205,8 +207,8 @@ def korelacja(X, Y):
     Oblicza korelację Piersona dwóch zestawów danych.
     
     Args:
-        X (list): pierwsza lista z liczbami.
-        Y (list): druga lista z liczbami.
+        X (str): pierwsza lista z liczbami.
+        Y (str): druga lista z liczbami.
         
     Returns:
         kor (num): wyznaczona korelacja.
@@ -228,20 +230,22 @@ def _korelacja(X, Y):
     Oblicza korelację Piersona dwóch zestawów danych.
 
     Args:
-        X (list): pierwsza lista z liczbami.
-        Y (list): druga lista z liczbami.
+        X (str): pierwsza lista z liczbami.
+        Y (str): druga lista z liczbami.
 
     Returns:
         kor (num): wyznaczona korelacja.
     """
-    srX = __srednia(X)
-    srY = __srednia(Y)
-    sX = __odchylenie(X)
-    sY = __odchylenie(Y)
+    A = list(map(int,X.replace(","," ").split()))
+    B = list(map(int,Y.replace(","," ").split()))
+    srX = __srednia(A)
+    srY = __srednia(B)
+    sX = __odchylenie(A)
+    sY = __odchylenie(B)
     kor = 0
     for i in range(len(X)):
-        kor += (X[i] - srX) * (Y[i] - srY)
-    kor = kor / (len(X) * sX * sY)
+        kor += (A[i] - srX) * (B[i] - srY)
+    kor = kor / (len(A) * sX * sY)
     return kor
 
 @click.command()
@@ -251,7 +255,7 @@ def testshapiro(Lista):
     Przeprowadza test Shapiro-Wilka dla listy o wielkości 3-10.
     
     Args:
-        Lista (list): lista z liczbami.
+        Lista (str): lista z liczbami.
         
     Returns:
         str: wynik testu.
@@ -278,14 +282,14 @@ def _testshapiro(Lista):
     Przeprowadza test Shapiro-Wilka dla listy o wielkości 3-10.
 
     Args:
-        Lista (list): lista z liczbami.
+        Lista (str): lista z liczbami.
 
     Returns:
         str: wynik testu.
     """
+    y = list(map(int,Lista.replace(","," ").split()))
     B = [[0.7071],[0.6872, 0.1677],[0.6646, 0.2413],[0.6431, 0.2806, 0.0875],[0.6233, 0.3031, 0.1401],[0.6052, 0.3164, 0.1743, 0.0561],[0.5888, 0.3244, 0.1976, 0.0947],[0.5739, 0.3291, 0.2141, 0.1224, 0.0399]]
     W = [0.767, 0.748, 0.762, 0.788, 0.803, 0.818, 0.829, 0.842]
-    y = Lista.copy()
     y.sort()
     srY = __srednia(y)
     S = 0
