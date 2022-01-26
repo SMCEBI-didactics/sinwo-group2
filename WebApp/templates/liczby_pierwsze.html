@@ -6,8 +6,11 @@
 <b>STATUS</b> = {{ status }}
 
 <form  method="POST">
-	<input type="username" name="liczba1" placeholder="Liczba 1">
-	<input type="username" name="liczba2" placeholder="Liczba 2">
+	<input type="number" name="n" placeholder="ilosc_liczb_pierwszych">
+	<select name = "wybor">
+		<option value = "primes_method1"> Najwieksza liczba pierwsza(modulo)</option>
+		<option value = "SieveOfEratosthenes"> Najwieksza liczba pierwsza(sito)</option>
+	</select>
 <input type="submit" value="Dodaj">
 </form>
 
@@ -22,4 +25,3 @@ czas: {{ wyniki.timestamp.strftime("%H:%M %d-%m-%Y") }} wykonane działanie: {{ 
 
 
 {% endblock %}
-

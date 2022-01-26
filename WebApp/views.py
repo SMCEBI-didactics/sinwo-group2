@@ -1,13 +1,14 @@
+from Modules.LiczbyPierwsze.LiczbyPierwsze.main import SieveOfEratosthenes
 from WebApp import app
 from WebApp.models import *
 from flask import render_template, request
 
 from Dodaj.main import dodaj
 import Dekoder.main as dk
+import LiczbyPierwsze.main as LP
 import Liczby_pseudolosowe.main as LPL
-
-"""
-"""
+import MiejscaZerowe.main as MZ
+import Statystyka.main as stat
 
 
 @app.route("/")
@@ -31,7 +32,9 @@ def method_route(var):
     site = var + '.html'
     return render_template(site, var=var)
 
-#######################
+
+
+######################
 #######################
 #######################
 #   Przykłady użycia  #
@@ -40,9 +43,7 @@ def method_route(var):
 
 @app.route("/przyklad", methods=["GET", "POST"])
 def przyklad():
-    """
-    Przykład: dodawanie 2 liczb
-    """
+
     # pobranie zawartości liczb
     status = "Oczekiwanie na liczby"
     if request.method == "POST":
@@ -82,6 +83,42 @@ def przyklad():
 
     return render_template("dodawanie.html", status=status, stare_wyniki=stare_wyniki)
 
+@app.route("/method/statystyka", methods=["GET", "POST"])
+def statystyka():
+    status = "Oczekiwanie na listy"
+    if request.method == "POST":
+        X = request.form["lista1"]
+        Y = request.form["lista2"]
+        wybor = request.form["wybor"]
+        
+        if wybor == "srednia":
+            wynik = stat._srednia(X)
+            status = f"{X} {wybor} {wynik}"
+        elif wybor == "mediana":
+            wynik = stat._mediana(X)
+            status = f"{X} {wybor} {wynik}"
+        elif wybor == "odchylenie":
+            wynik = stat._odchylenie(X)
+            status = f"{X} {wybor} {wynik}"
+        elif wybor == "regresjaliniowa":
+            wynik = stat._regresjaliniowa(X,Y)
+            status = f"{X} ; {Y} {wybor} {wynik}"
+        elif wybor == "korelacja":
+            wynik = stat._korelacja(X,Y)
+            status = f"{X} ; {Y} {wybor} {wynik}"
+        elif wybor == "testshapiro":
+            wynik = stat._testshapiro(X)
+            status = f"{X} {wybor} {wynik}"
+        db_wynik = Statystyka(dzialanie=wybor, lista1=X, lista2=Y, wynik=wynik)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+            
+    stare_wyniki = Statystyka.query.filter().all() 
+    return render_template("statystyka.html", status=status, stare_wyniki=stare_wyniki)
+            
 @app.route("/method/liczby_losowe", methods=["GET", "POST"])
 def liczby_losowe():
     """
@@ -101,8 +138,6 @@ def liczby_losowe():
 
         
         status = f"{randomNumber}"
-
-
         db_wynik = Liczby_pseudolosowe(bottom=bottom, top=top, randomNumber=randomNumber)
         try:
             db.session.add(db_wynik)
@@ -156,7 +191,62 @@ def dekoder():
     stare_wyniki = Dekodery.query.filter().all()
 
     return render_template("dekodery.html", status=status, stare_wyniki=stare_wyniki)
+    
+@app.route("/method/liczby_pierwsze", methods=["GET", "POST"])
+def liczby_pierwsze():
+    """
+    Przykład: Znajdowanie najwiekszej liczby pierwszej
+    """
+    status = "Oczekiwanie na liczbe"
+    if request.method == "POST":
+        n = request.form["n"]
+        wybor = request.form["wybor"]
 
+        if wybor == "primes_method1":
+            wynik = LP.primes_method1(n)
+        elif wybor == "SieveOfEratosthenes":
+            wynik = LP.SieveOfEratosthenes(n)
+        status = f"Najwieksza liczba pierwsa to {wynik} z {n}"
+        db_wynik = LiczbyPierwsze(n=n, wynik=wynik)
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+            
+    stare_wyniki = LiczbyPierwsze.query.filter().all() 
+    return render_template("liczby_pierwsze.html", status=status, stare_wyniki=stare_wyniki)
+
+@app.route("/method/miejsca_zerowe", methods=["GET", "POST"])
+def miejsca_zerowe():
+    
+    """
+    Obliczanie miejsc zerowych
+    """
+    status = "Oczekiwanie na dane"
+    if request.method == "POST":
+        fun = request.form["fun"]
+        a = request.form["a"]
+        b = request.form["b"]
+        wybor = request.form["wybor"]
+        
+        if wybor == "metoda_bisekcji":
+            wynik = MZ._metoda_bisekcji(fun, a, b)
+        elif wybor == "metoda_siecznych":
+            wynik = MZ._metoda_bisekcji(fun, a, b)
+              
+        status = f"{wynik}"
+        db_wynik = MiejscaZerowe(fun=fun, a=a, b=b, wynik=wynik)
+
+        try:
+            db.session.add(db_wynik)
+            db.session.commit()
+        except Exception as e:
+            print(f"Błąd podczas dodawania wyniku do bazy \n{e}")
+
+    stare_wyniki = MiejscaZerowe.query.filter().all()
+    return render_template("miejsca_zerowe.html", status=status, stare_wyniki=stare_wyniki)
+        
 
 ##################
 # inne przykłady #
