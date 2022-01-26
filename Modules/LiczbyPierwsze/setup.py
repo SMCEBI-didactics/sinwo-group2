@@ -10,7 +10,10 @@ setup(
     install_requires=["Click"],
     packages=['LiczbyPierwsze'],
     entry_points={
-        'console_scripts' : ['LiczbyPierwsze = LiczbyPierwsze.main:main']
+        'console_scripts' : [
+            'LiczbyPierwsze = LiczbyPierwsze.main:main'
+
+            ]
     }
 )
 

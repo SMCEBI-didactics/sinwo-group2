@@ -59,12 +59,17 @@ def SieveOfEratosthenes(n):
 
 
 @click.command()
-@click.option("--liczba1", help="podaj liczbe 1", prompt="podaj liczbę 1")
-def main(n):
-    wynik = SieveOfEratosthenes(n)
-    wynik1 = primes_method1(n)
-    print(f"Najwieksza liczba pierwsza(metoda modulo) {primes_method1}")
-    print(f"Najwieksza liczba pierwsza(metoda sita) {SieveOfEratosthenes}")
+@click.option("--rodzaj", help="podaj rodzaj", prompt="podaj rodzaj")
+@click.option("--n", help="podaj liczbe ", prompt="podaj liczbę ")
+def main(rodzaj, n):
+    n = int(n)
+    if rodzaj == "sito":
+        wynik = SieveOfEratosthenes(n)
+        print(f"Najwieksza liczba pierwsza(metoda sita) {wynik}")
+    elif rodzaj == "modulo":
+        wynik1 = primes_method1(n)
+        print(f"Najwieksza liczba pierwsza(metoda modulo) {wynik1}")
+
     return None
 
 if __name__ == "__main__":

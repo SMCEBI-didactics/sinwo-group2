@@ -5,6 +5,6 @@ python-dateutil
 
 Modules/Dodaj/
 Modules/Dekoder/
-
+Modules/LiczbyPierwsze/
 
 
