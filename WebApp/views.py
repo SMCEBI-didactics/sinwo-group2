@@ -93,16 +93,16 @@ def liczby_losowe():
         wybor = request.form["wybor"]
         
         if wybor=="Gauss":
-            randomNumber = LPL._RandomNumberGeneratorGauss(bottom, top)
+            randomNumber = LPL.RandomNumberGeneratorGauss(bottom, top)
         elif wybor=="Neumann":
-            randomNumber = LPL._RandomNumberGeneratorNeumann(bottom, top)
+            randomNumber = LPL.RandomNumberGeneratorNeumann(bottom, top)
         elif wybor=="Uniform":
-            randomNumber = LPL._RandomNumberGeneratorUniform(bottom, top)
+            randomNumber = LPL.RandomNumberGeneratorUniform(bottom, top)
 
         
         status = f"{randomNumber}"
 
-        # komunikacja z bazą; dodanie wyniku do bazy
+
         db_wynik = Liczby_pseudolosowe(bottom=bottom, top=top, randomNumber=randomNumber)
         try:
             db.session.add(db_wynik)
