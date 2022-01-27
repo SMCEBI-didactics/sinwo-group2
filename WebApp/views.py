@@ -3,7 +3,6 @@ from WebApp import app
 from WebApp.models import *
 from flask import render_template, request
 
-from Dodaj.main import dodaj
 import Dekoder.main as dk
 import LiczbyPierwsze.main as LP
 import Liczby_pseudolosowe.main as LPL
