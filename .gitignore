@@ -7,3 +7,4 @@
 %SystemDrive%
 database
 *.DS_Store
+get-pip.py

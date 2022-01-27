@@ -2,10 +2,10 @@ FROM python:latest
 
 COPY . dekoder
 
-WORKDIR dekoder/
+WORKDIR /dekoder/
 
 #RUN pip install -r requirements.txt
 RUN pip install .
 
-ENTRYPOINT ["dekoder"]
+ENTRYPOINT ["decode"]
 
