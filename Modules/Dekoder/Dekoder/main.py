@@ -7,7 +7,7 @@ Ten moduł odpowiada za wykonywanie różnych operacji enkodujących oraz dekodu
 """
 
 @click.command()
-@click.option("--liczba", help="podaj liczbe", prompt="podaj liczbe")
+@click.option("--liczba")
 def to_bin(liczba: str) -> str:
     """
     Zamienia liczbe dziesiętną na binarną
@@ -38,7 +38,7 @@ def _to_bin(liczba: str) -> str:
     return wynik
 
 @click.command()
-@click.option("--liczba", help="podaj liczbe", prompt="podaj liczbe")
+@click.option("--liczba")
 def to_hex(liczba: str) -> str:
     """
     Zamienia liczbe dziesiętną na heksadecymalna
@@ -69,7 +69,7 @@ def _to_hex(liczba: str) -> str:
     return wynik
 
 @click.command()
-@click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
+@click.option("--tekst")
 def to_base64(tekst: str) -> str:
     """
     Zamienia tekst na jego reprezentacje w base64
@@ -105,7 +105,7 @@ def _to_base64(tekst: str) -> str:
 
 
 @click.command()
-@click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
+@click.option("--tekst")
 def from_base64(tekst: str) -> str:
     """
     Zamienia zakodowany string w base64 na czytelny tekst
@@ -140,7 +140,7 @@ def _from_base64(tekst: str) -> str:
     return wynik
 
 @click.command()
-@click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
+@click.option("--tekst")
 def hash_md5(tekst: str):
     """
     Zwraca hash md5 dla wprowadzonego tekstu
@@ -172,7 +172,7 @@ def _hash_md5(tekst: str):
 
 
 @click.command()
-@click.option("--tekst", help="podaj tekst", prompt="podaj tekst")
+@click.option("--tekst")
 def hash_sha256(tekst: str):
     """
     Zwraca hash SHA256 dla wprowadzonego tekstu
