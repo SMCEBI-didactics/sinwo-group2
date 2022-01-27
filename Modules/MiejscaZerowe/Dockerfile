@@ -1,10 +1,11 @@
 FROM python:latest
 
-COPY . dodaj
+COPY . MiejscaZerowe
 
-WORKDIR dodaj/
+WORKDIR MiejscaZerowe/
 
 #RUN pip install -r requirements.txt
 RUN pip install .
 
-ENTRYPOINT ["dodaj"]
+ENTRYPOINT [""]
+
