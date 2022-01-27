@@ -42,3 +42,13 @@ adres oraz port może być również zdefiniowany przez zmienne środowiskowe:
 (flask_venv) user@host:~$ export FLASK_RUN_HOST=0.0.0.0
 (flask_venv) user@host:~$ export FLASK_RUN_PORT=9999
 ```
+#
+## Alternatywnie można uruchomić aplikacje jako kontener
+
+```
+make run
+```
+lub 
+```
+sudo docker-compose up
+```

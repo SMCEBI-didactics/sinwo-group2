@@ -15,7 +15,7 @@ def home_route():
     """
     Strona główna
     """
-    wybory = ['liczby pierwsze', 'calkowanie', 'liczby losowe', 'dekodery', 'statystyka', 'miejsca zerowe']
+    wybory = ['liczby pierwsze', 'liczby losowe', 'dekodery', 'statystyka', 'miejsca zerowe']
     opcje = []
     for el in wybory:
         file_name = "_".join(el.split(" "))
@@ -30,7 +30,6 @@ def method_route(var):
     """
     site = var + '.html'
     return render_template(site, var=var)
-    return render_template("dodawanie.html", status=status, stare_wyniki=stare_wyniki)
 
 @app.route("/method/statystyka", methods=["GET", "POST"])
 def statystyka():
