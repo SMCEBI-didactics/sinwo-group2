@@ -7,5 +7,5 @@ WORKDIR dekoder/
 #RUN pip install -r requirements.txt
 RUN pip install .
 
-ENTRYPOINT []
+ENTRYPOINT ["dekoder"]
 
