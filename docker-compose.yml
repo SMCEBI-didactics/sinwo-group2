@@ -1,7 +1,9 @@
 version: "2"
 services: 
   webapp-core:
-    build: ./dockerfiles/app/Dockerfile
+    build:
+      context: .
+      dockerfile: dockerfile.app
     image: wa-core:v0.1
     ports:
       - 5000:5000 # ustaw 80 na produkcji (ma działać na domenie http://prod2.fenu-experiment.pl/ )
@@ -14,7 +16,9 @@ services:
     networks:
       - webapp
   sqlitebrowse:
-    build: ./dockerfiles/db/Dockerfile
+    build:
+      context: .
+      dockerfile: dockerfile.db
     image: coleifer/sqlite-web
     ports:
       - 8081:8080 # ustaw 8080 na produkcji (ma działać na domenie http://prod2db.fenu-experiment.pl/ )

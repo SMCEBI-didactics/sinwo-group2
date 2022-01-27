@@ -1,10 +1,11 @@
 SHELL := /bin/bash
 
-test:
-	source tests/start_tests
+run:
+	sudo docker-compose up
 
-update-db:
-	source tests/update_db
+stop:
+	sudo docker-compose down
 
 clear:
-	rm -rf venv/
+	rm -rf database
+	docker volume rm sinwo-group2_appdb
