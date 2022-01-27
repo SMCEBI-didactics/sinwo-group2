@@ -1,1 +1,0 @@
-miejsce na dokumentacje

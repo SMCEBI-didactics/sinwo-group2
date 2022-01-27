@@ -69,8 +69,8 @@ def mediana(lista):
     B = list(map(int,lista.replace(","," ").split()))
     B.sort()
     if len(B) % 2 == 0:
-        print(((B[len(B) // 2 - 1] + y[len(B) // 2]) / 2))
-        return ((B[len(B) // 2 - 1] + y[len(B) // 2]) / 2)
+        print(((B[len(B) // 2 - 1] + B[len(B) // 2]) / 2))
+        return ((B[len(B) // 2 - 1] + B[len(B) // 2]) / 2)
     print(B[len(B) // 2])
     return B[len(B) // 2]
 
@@ -149,22 +149,22 @@ def __odchylenie(lista):
     return sigma
 
 @click.command()
-@click.option("--X", help="podaj listę", prompt="podaj pierwszą listę z 3-10 danymi typu: '1 3 4'")
-@click.option("--Y", help="podaj listę", prompt="podaj drugą listę z 3-10 danymi typu: '1 3 4'")
-def regresjaliniowa(X, Y):
+@click.option("--x", help="podaj listę", prompt="podaj pierwszą listę z 3-10 danymi typu: '1 3 4'")
+@click.option("--y", help="podaj listę", prompt="podaj drugą listę z 3-10 danymi typu: '1 3 4'")
+def regresjaliniowa(x, y):
     """
     Oblicza regresję liniową dwóch zestawów danych.
     
     Args:
-        X (str): pierwsza lista z liczbami.
-        Y (str): druga lista z liczbami.
+        x (str): pierwsza lista z liczbami.
+        y (str): druga lista z liczbami.
         
     Returns:
         a (num): nachylenie linii regresji
         b (num): wyraz wolny
     """
-    A = list(map(int,X.replace(","," ").split()))
-    B = list(map(int,Y.replace(","," ").split()))
+    A = list(map(int,x.replace(","," ").split()))
+    B = list(map(int,y.replace(","," ").split()))
     srX = __srednia(A)
     srY = __srednia(B)
     tmp = 0
@@ -178,20 +178,20 @@ def regresjaliniowa(X, Y):
     print(str(a)+" "+str(b))
     return str(a)+" "+str(b)
 
-def _regresjaliniowa(X, Y):
+def _regresjaliniowa(x, y):
     """
     Oblicza regresję liniową dwóch zestawów danych.
 
     Args:
-        X (str): pierwsza lista z liczbami.
-        Y (str): druga lista z liczbami.
+        x (str): pierwsza lista z liczbami.
+        y (str): druga lista z liczbami.
 
     Returns:
         a (num): nachylenie linii regresji
         b (num): wyraz wolny
     """
-    A = list(map(int,X.replace(","," ").split()))
-    B = list(map(int,Y.replace(","," ").split()))
+    A = list(map(int,x.replace(","," ").split()))
+    B = list(map(int,y.replace(","," ").split()))
     srX = __srednia(A)
     srY = __srednia(B)
     tmp = 0
@@ -205,21 +205,21 @@ def _regresjaliniowa(X, Y):
     return str(a)+" "+str(b)
 
 @click.command()
-@click.option("--X", help="podaj listę", prompt="podaj pierwszą listę z 3-10 danymi typu: '1 3 4'")
-@click.option("--Y", help="podaj listę", prompt="podaj drugą listę z 3-10 danymi typu: '1 3 4'")
-def korelacja(X, Y):
+@click.option("--x", help="podaj listę", prompt="podaj pierwszą listę z 3-10 danymi typu: '1 3 4'")
+@click.option("--y", help="podaj listę", prompt="podaj drugą listę z 3-10 danymi typu: '1 3 4'")
+def korelacja(x, y):
     """
     Oblicza korelację Piersona dwóch zestawów danych.
     
     Args:
-        X (str): pierwsza lista z liczbami.
-        Y (str): druga lista z liczbami.
+        x (str): pierwsza lista z liczbami.
+        y (str): druga lista z liczbami.
         
     Returns:
         kor (num): wyznaczona korelacja.
     """
-    A = list(map(int,X.replace(","," ").split()))
-    B = list(map(int,Y.replace(","," ").split()))
+    A = list(map(int,x.replace(","," ").split()))
+    B = list(map(int,y.replace(","," ").split()))
     srX = __srednia(A)
     srY = __srednia(B)
     sX = __odchylenie(A)
@@ -231,19 +231,19 @@ def korelacja(X, Y):
     print(kor)
     return kor
 
-def _korelacja(X, Y):
+def _korelacja(x, y):
     """
     Oblicza korelację Piersona dwóch zestawów danych.
 
     Args:
-        X (str): pierwsza lista z liczbami.
-        Y (str): druga lista z liczbami.
+        x (str): pierwsza lista z liczbami.
+        y (str): druga lista z liczbami.
 
     Returns:
         kor (num): wyznaczona korelacja.
     """
-    A = list(map(int,X.replace(","," ").split()))
-    B = list(map(int,Y.replace(","," ").split()))
+    A = list(map(int,x.replace(","," ").split()))
+    B = list(map(int,y.replace(","," ").split()))
     srX = __srednia(A)
     srY = __srednia(B)
     sX = __odchylenie(A)

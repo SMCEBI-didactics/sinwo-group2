@@ -3,7 +3,6 @@ Flask-Migrate
 Flask-SQLAlchemy
 python-dateutil
 
-Modules/Dodaj/
 Modules/Dekoder/
 Modules/LiczbyPierwsze/
 Modules/Statystyka/

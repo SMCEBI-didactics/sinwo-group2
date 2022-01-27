@@ -1,11 +1,11 @@
 FROM python:latest
 
-COPY . dodaj
+COPY . Liczby_pseudolosowe
 
-WORKDIR dodaj/
+WORKDIR Liczby_pseudolosowe/
 
 #RUN pip install -r requirements.txt
 RUN pip install .
 
-ENTRYPOINT ["dodaj"]
+ENTRYPOINT ["Losuj"]
 
