@@ -59,8 +59,8 @@ def SieveOfEratosthenes(n):
 
 
 @click.command()
-@click.option("--rodzaj", help="podaj rodzaj", prompt="podaj rodzaj")
-@click.option("--n", help="podaj liczbe ", prompt="podaj liczbę ")
+@click.option("--rodzaj", help="podaj rodzaj")
+@click.option("--n", help="podaj liczbe ")
 def main(rodzaj, n):
     n = int(n)
     if rodzaj == "sito":

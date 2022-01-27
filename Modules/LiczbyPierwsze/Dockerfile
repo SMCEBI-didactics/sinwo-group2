@@ -1,11 +1,11 @@
 FROM python:latest
 
-COPY . dodaj
+COPY . LiczbyPierwsze
 
-WORKDIR dodaj/
+WORKDIR LiczbyPierwsze/
 
 #RUN pip install -r requirements.txt
 RUN pip install .
 
-ENTRYPOINT ["dodaj"]
+ENTRYPOINT [""]
 
