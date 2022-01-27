@@ -4,12 +4,51 @@
 
 ### Instalacja zależności:
 
-Użyj wirtualnego środowiska:
+sklad grupy:
 
-```console
-user@host:~$ virtualenv flask_venv
-user@host:~$ source flask_venv/bin/activate
-(flask_venv) user@host:~$ pip install -r requirements.txt
+```
+* Jakub Krukowski 
+* Aleksander Kopec
+* Adam Martyniak
+* Adam Wowra
+* Oliwier Przeniczko
+
+```
+```
+Program do prostych obliczeń numerycznych.
+```
+## Funkcjonalności: 
+
+# Wyliczenie liczb pierwszych: 
+```
+Pokaż maksymalną liczbę pierwszą z podanego przedziału (max do 30000) z czasem wykonania metody.
+przy pomocy metody modulo oraz przy pomocy sita Eratostenesa.
+```
+# Generator liczb losowych:
+```
+Z wybranego przedziału wylosuj liczbę z rozkładu jednorodnego i Gaussa
+Wylosuj liczbę z wybranego przedziału oraz rozkładu opisanego przez wprowadzoną funkcję (metoda eliminacji von Neumanna)
+```
+# Dekodery:
+```
+Zapisz wprowadzoną liczbę w systemie dwójkowym, decymalnym oraz hex-decymalnym.
+Zapisz wprowadzony tekst w formacie base64 (i odwrotnie).
+Dla wprowadzonego tekstu wylicz hash: sha256 oraz md5
+```
+# Statystyka:
+```
+wylicz średnią, medianę i odchylenia dla wprowadzonych liczb
+wyznacz korelację Pearsona
+wylicz współczynniki regresji liniowej
+wykonaj test Shapiro-Wilka
+```
+
+# Dla wprowadzonej funkcji znajdź miejsca zerowe:
+```
+metoda bisekcji
+metoda siecznych
+metoda iteracji
+metoda newtona
 
 ```
 
