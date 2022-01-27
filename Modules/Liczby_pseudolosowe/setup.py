@@ -11,7 +11,7 @@ setup(
     packages=['Liczby_pseudolosowe'],
     entry_points={
         'console_scripts' : [
-            'Losoj = Liczby_pseudolosowe.main:main'
+            'Losuj = Liczby_pseudolosowe.main:main'
         ]
     }
 )
