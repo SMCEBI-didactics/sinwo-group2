@@ -2,9 +2,9 @@ import click
 
 
 @click.command()
-@click.option('--fun', type=str, prompt="Podaj wzor funkcji(x jako argument)")
-@click.option('--a', type=int, prompt="Podaj poczatek rozpatrywanego zakresu")
-@click.option('--b', type=int, prompt="Podaj koniec rozpatrywanego zakresu")
+@click.option('--fun')
+@click.option('--a')
+@click.option('--b')
 def metoda_bisekcji(fun, a, b):
     
     """
@@ -139,9 +139,9 @@ def _metoda_bisekcji(fun, a, b):
 
 
 @click.command()
-@click.option('--fun', type=str, prompt="Podaj wzor funkcji(x jako argument)")
-@click.option('--a', type=int, prompt="Podaj poczatek rozpatrywanego zakresu")
-@click.option('--b', type=int, prompt="Podaj koniec rozpatrywanego zakresu")
+@click.option('--fun')
+@click.option('--a')
+@click.option('--b')
 def metoda_siecznych(fun, a, b):
     
     """
