@@ -63,9 +63,9 @@ def RandomNumberGeneratorNeumann(bottom, top):
    
 
 @click.command()
-@click.option('--rodzaj', prompt="Podaj rodzaj operacji")
-@click.option('--bottom', type=float, prompt="Podaj dolna granice")
-@click.option('--top', type=float, prompt="Podaj gorna granice")
+@click.option('--rodzaj')
+@click.option('--bottom', type=float)
+@click.option('--top', type=float)
 def main(rodzaj, bottom, top):
     
     bottom=float(bottom)
