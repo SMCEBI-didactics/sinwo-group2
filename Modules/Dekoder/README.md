@@ -14,5 +14,5 @@ sudo docker run dekoder:v1.0 <komenda>
 ```
 Na przykład:
 ```
-sudo docker run dekoder:v1.0 to_bin --liczba 1234
+sudo docker run dekoder:v1.0 to_bin 1234
 ```
