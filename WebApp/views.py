@@ -105,15 +105,6 @@ def dekoder():
         wybor = request.form["wybor"]
         operacja = ''
 
-        operacje = {
-        'to_bin': dk.to_bin,
-        'to_hex': dk.to_hex,
-        'to_base64': dk.to_base64,
-        'from_base64': dk.from_base64,
-        'md5': dk.hash_md5,
-        'sha256': dk.hash_sha256,
-        }
-
         if wybor == "to_bin":
             wynik = dk.to_bin(tekst)
             status = f"{tekst} = 0b{wynik}"
@@ -139,8 +130,6 @@ def dekoder():
             status = f"'{tekst}' w md5 to '{wynik}'"
             operacja = 'toHashMd5'
 
-        wynik = operacje[wybor](tekst)
-        operacja = operacje
 
         db_wynik = Dekodery(tekst=tekst, wynik=wynik, operacja=operacja)
         try:
